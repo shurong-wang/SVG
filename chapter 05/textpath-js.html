@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Document</title>
+    <title>textpath</title>
 </head>
 
 <body>
@@ -20,10 +20,21 @@
         <path id="path1" d="M 100 200 Q 200 100 300 200 T 500 200" stroke="rgb(0,255,0)" fill="none" />
         <path id="path2" d="M 100 300 l 100-50 200 100 100 -50" stroke="rgb(255,0,0)" fill="none" />
         <path id="path3" d="M100 400 A 400 300 0 0 0 500 400" stroke="blue" fill="none" />
+
         <text id="text" x="100" y="100" style="font-size:20px;">
             Text path scripting.
             <tspan id="tspan">动态使用路径文本</tspan>
         </text>
+
+        <!-- 
+        <text id="text" x="100" y="100" style="font-size:20px;">
+            <textPath xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#path1">
+                Text path scripting.
+                <tspan id="tspan" fill="rgb(0,255,0)">动态使用路径文本</tspan>
+            </textPath>
+        </text> 
+        -->
+
     </svg>
     <script>
     var SVG_NS = 'http://www.w3.org/2000/svg';
@@ -55,21 +66,16 @@
         text.removeChild(textPath);
         tspan.removeAttribute('fill');
     }
-    select.addEventListener('input', function() {
+
+    select.addEventListener('change', function() {
         var value = select.value;
         if (text.firstChild.tagName && text.firstChild.tagName.toLowerCase() == 'textpath') {
-            if (value == 'none') {
-                removeTextPath();
-            } else {
-                removeTextPath();
-                addTextPath();
-                setTextPath(value);
-            }
-        } else {
-            if (value != 'none') {
-                addTextPath();
-                setTextPath(value);
-            }
+            removeTextPath();
+        } 
+
+        if (value != 'none') {
+            addTextPath();
+            setTextPath(value);
         }
     });
     </script>

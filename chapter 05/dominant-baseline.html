@@ -3,11 +3,11 @@
 
 <head>
     <meta charset="utf-8">
-    <title>JS Bin</title>
+    <title>dominant-baseline</title>
 </head>
 
 <body>
-    <select id="ta">
+    <select id="textAnchor">
         <option value="start">start</option>
         <option value="end">end</option>
         <option value="middle">center</option>
@@ -27,7 +27,7 @@
         select.appendChild(opt);
     });
 
-    select.addEventListener('input', function() {
+    select.addEventListener('change', function() {
         text.setAttribute('dominant-baseline', select.value);
         var box = text.getBBox();
         rect.setAttribute('x', box.x);
@@ -36,8 +36,8 @@
         rect.setAttribute('height', box.height);
     });
 
-    ta.addEventListener('input', function() {
-        text.setAttribute('text-anchor', ta.value);
+    textAnchor.addEventListener('change', function() {
+        text.setAttribute('text-anchor', this.value);
     });
     </script>
 </body>

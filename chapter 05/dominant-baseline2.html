@@ -3,11 +3,11 @@
 
 <head>
     <meta charset="utf-8">
-    <title>JS Bin</title>
+    <title>dy</title>
 </head>
 
 <body>
-    <select id="ta">
+    <select id="textAnchor">
         <option value="start">start</option>
         <option value="end">end</option>
         <option value="middle">center</option>
@@ -17,16 +17,18 @@
         <option value="middle">middle</option>
         <option value="bottom">bottom</option>
     </select>
+
     <svg>
         <path stroke="green" d="M 0 100.5 500 100.5 M 140 0 v 200" />
         <text id="text" x="140" y="100" fill="red" font-size="50">慕课网</text>
         <rect id="rect" stroke="blue" fill="none"></rect>
     </svg>
+
     <script>
 
-    select.addEventListener('input', function() {
+    select.addEventListener('change', function() {
         text.setAttribute('dy', 0);
-        var dy = getAlignmentDy(select.value);
+        var dy = getAlignDy(select.value);
         text.setAttribute('dy', dy);
         var box = text.getBBox();
         rect.setAttribute('x', box.x);
@@ -35,18 +37,21 @@
         rect.setAttribute('height', box.height);
     });
 
-    ta.addEventListener('input', function() {
-        text.setAttribute('text-anchor', ta.value);
+    textAnchor.addEventListener('change', function() {
+        text.setAttribute('text-anchor', this.value);
     });
 
-    function getAlignmentDy(value) {
+    function getAlignDy(value) {
         var box = text.getBBox();
         var y = text.getAttribute('y');
         // console.log(y, box.y);
         switch(value) {
-            case 'top': return y - box.y;
-            case 'middle': return y - ( box.y + box.height / 2);
-            case 'bottom': return y - (box.y + box.height);
+            case 'top': 
+                return y - box.y;
+            case 'middle': 
+                return y - ( box.y + box.height / 2);
+            case 'bottom': 
+                return y - (box.y + box.height);
         }
     }
     </script>

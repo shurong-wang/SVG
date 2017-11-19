@@ -1,12 +1,12 @@
 <html>
 <head>
-	<title>正弦字体</title>
+	<title>正弦动画彩色字体</title>
 </head>
 <body>
 <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
     <defs>
         <pattern id="grid" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
-            <path stroke="#F0F0F0" fill="none" d="M0,0H20V20"></path>
+            <path stroke="#f0f0f0" fill="none" d="M0,0H20V20"></path>
         </pattern>
     </defs>
     <rect width="1200" height="1000" fill="url(#grid)"></rect>
@@ -15,7 +15,7 @@
 </svg>
 <script>
 	// x = [20,20,20...]
-	// y = s * sin(w * x + t)
+	// y = s * sin(ω * x + t)
 	var NS = 'http://www.w3.org/2000/svg';
 	var text = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 	var n = text.length;
@@ -23,7 +23,7 @@
 	var y = null;
 	var i = n;
 	var s = 100;
-	var w = 0.02;
+	var ω = 0.02;
 	var t = 0;
 
 	while(i--) {
@@ -39,7 +39,7 @@
 		y = [];
 		var ly = 0, cy;
 		for(i = 0; i < n; ++i) {
-			cy = -s * Math.sin( w * i * 20 + t);
+			cy = -s * Math.sin( ω * i * 20 + t);
 			y.push(cy - ly);
 			ly = cy;
 		}
